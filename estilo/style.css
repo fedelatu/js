@@ -1,0 +1,114 @@
+* {
+    padding: 0;
+    margin: 0;
+  }
+  header {
+    position: fixed;
+    border-style: groove;
+    border-color: aliceblue;
+    background-color: darkgray;
+    margin: 10px;
+  }
+  
+  body {
+    background-image: url(../imágenes/fondowebbici.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  body h1 {
+    font-size: medium;
+    color: aqua;
+  }
+  body .subtitulo {
+    text-align: center;
+    color: aliceblue;
+    text-decoration: underline;
+    padding-top: 30px;
+  }
+  body .contenido-p {
+    color: aliceblue;
+    padding: 150px;
+    padding: 40px;
+  }
+  body .info {
+    padding: 40px;
+  }
+  
+  footer {
+    margin-top: 4%;
+    height: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  p{
+    text-overflow: initial;
+    text-wrap: wrap;
+    text-align: left;
+    color: aliceblue;
+    padding: 2px;
+    padding-right: center;
+    margin: 5px;
+  }
+  .logo-ig{
+    margin-top: 7px;
+    margin-bottom: 7px;
+    width: 40px;
+    height: 40px;
+  }
+  .contacto {
+    color: cadetblue;
+  }
+
+button {
+    color: darkslateblue;
+    padding: 8px 8px;
+    font-size: 14px;
+    background-color: burlywood;
+    
+}
+.texto{
+    margin: 2%;
+    color: lightblue;
+    background-color: transparent;
+    border-style: hidden;
+}
+.imagen{
+    position: relative;
+    width: 23%;
+}
+.imagen2{
+    position: relative;
+    width: 18.6%;
+}
+.imagen-div{
+    padding: 2%;
+    margin-bottom: 8%;
+
+}
+
+#carrito {
+    margin-top: 20px;
+    margin-right: 52%;
+    border: 1px solid blueviolet;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#listaCarrito {
+    list-style: circle;
+    padding: 0;
+}
+
+#listaCarrito li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+#total {
+    font-weight: bold;
+}

@@ -8,19 +8,40 @@
    
     
 </head>
-<header>
-    <h1>Rodados Kharuby</h1>  
-    <nav>
-        <a href="../index.html">Inicio</a>
-        <a href="../pages/productos.html">Productos</a>
-        <a href="../pages/taller.html">Taller</a>
-    </nav>
-</header>
+
 <body>
-     <h2>Productos</h2>
-     <button id="verLista">Ver Lista</button>
-    <div id="resultado"></div>
-    <button id="vaciarCarrito">Vaciar Carrito</button>
+    <header>
+        <h1 class="titulo">Rodados Kharuby</h1>
+        <nav >
+            <a class="barranav1" href="../index.html">Inicio</a>
+            <a class="barranav1" href="../pages/productos.html">Productos</a>
+            <a class="barranav1" href="../pages/taller.html">Taller</a>
+        </nav>
+    </header>
+    <main class="contenido-p">
+        <h2 class="subtitulo">Productos</h2>
+        <p>Le invitamos a ver el listado para consultar presupuestos</p>
+        <button class= "texto" id="verLista">/Listado</button>
+        <section>
+            
+            <h4>Productos disponibles:</h4>
+            <div id="productos"></div>
+        
+            <h4>Carrito de Compras:</h4>
+            <div id="carrito"></div>
+            <p>Total: $<span id="total">0</span></p>
+            <button id="vaciarCarrito">Vaciar Carrito</button>
+        </section>
+
+    </main>
+    <footer>
+        <h3 class="contacto">Información de Contacto</h3>
+        <a href="https://www.instagram.com/bicienventa/?next=%2F" target="_blank"><img class="logo-ig" src="../imágenes/logo ig.png" alt="acceso directo mediante el logo de instagram"></a>
+        <h3 class="contacto">Zona CABA, taller en Caballito</h3>
+        
+        
+    </footer>
+     
     <script src="../js/main.js"></script>
 </body>
 </html>

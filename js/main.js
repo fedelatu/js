@@ -1,75 +1,85 @@
 document.addEventListener("DOMContentLoaded", function () {
     const servicios = [
-        { id: 1, nombre: "centrado de llanta", precio: 1500 },
-        { id: 2, nombre: "cambio de maza", precio: 3100 },
-        { id: 3, nombre: "cambio de eje", precio: 1100 },
-        { id: 4, nombre: "parchado", precio: 700 },
+        { id: 1, nombre: "centrado de llanta", precio: 1800 },
+        { id: 2, nombre: "cambio de maza", precio: 3400 },
+        { id: 3, nombre: "cambio de eje", precio: 1400 },
+        { id: 4, nombre: "parchado", precio: 750 },
     ];
 
+
+
+    const verListaButton = document.getElementById("verLista");
+    const productosContainer = document.getElementById("productos");
+    const carritoContainer = document.getElementById("carrito");
+    const totalSpan = document.getElementById("total");
+
+    verListaButton.addEventListener("click", () => {
+        mostrarProductos(servicios);
+    });
+
+  
+    function mostrarProductos(productos) {
+        const productosContainer = document.getElementById("productos");
     
+        productosContainer.innerHTML = "";
+    
+        productos.forEach(producto => {
+            const productoDiv = document.createElement("div");
+            productoDiv.innerHTML = `
+                <p>${producto.nombre} - $${producto.precio}</p>
+                <button class="agregar-carrito" data-id="${producto.id}">Agregar al carrito</button>
+            `;
+            productosContainer.appendChild(productoDiv);
+    
+            const agregarButton = productoDiv.querySelector(".agregar-carrito");
+            agregarButton.addEventListener("click", () => {
+                agregarAlCarrito(producto.id);
+            });
+        });
+    }
+
+
     const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-    let opciones = "Seleccione una opción (0 en caso de no precisar / ver carrito):\n";
+    function agregarAlCarrito(id) {
+        const producto = servicios.find(item => item.id === id);
 
-    for (let i = 0; i < servicios.length; i++) {
-        opciones += servicios[i].id + ". " + servicios[i].nombre + "\n";
+        if (producto) {
+            carrito.push(producto);
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            mostrarCarrito();
+        }
     }
 
-    function verLista() {
-        let opcionElegida = parseInt(prompt(opciones));
+    function mostrarCarrito() {
+        let total = 0;
 
-        if (opcionElegida >= 1 && opcionElegida <= servicios.length) {
-            let servicioElegido = null;
-            for (let i = 0; i < servicios.length; i++) {
-                if (servicios[i].id === opcionElegida) {
-                    servicioElegido = servicios[i];
-                    break;
-                }
-            }
+        carritoContainer.innerHTML = "";
 
-            if (servicioElegido) {
-                let cantidad = parseFloat(prompt("Indique la cantidad de unidades requeridas para " + servicioElegido.nombre + ":"));
+        carrito.forEach(producto => {
+            total += producto.precio;
+            carritoContainer.innerHTML += `<p>${producto.nombre} - $${producto.precio}</p>`;
+        });
 
-                if (!isNaN(cantidad) && cantidad > 0) {
-                    carrito.push({ servicio: servicioElegido, cantidad });
-                    alert(cantidad + " unidades de " + servicioElegido.nombre + " añadidas al carrito.");
-                    
-                    // Guardar el carrito actualizado en localStorage.
-                    localStorage.setItem("carrito", JSON.stringify(carrito));
-                } else {
-                    alert("Cantidad inválida. Ingrese una cantidad válida.");
-                }
-            } else {
-                alert("Opción inválida. Elija una opción válida.");
-            }
-        } else {
-            alert("No eligió ningún servicio.");
-        }
-
-
-        function vaciarCarrito() {
-            carrito.length = 0; 
-            localStorage.removeItem("carrito"); 
-            mostrarCarrito(); 
-        }
-        
-        document.getElementById("vaciarCarrito").addEventListener("click", vaciarCarrito);
-
-
-        let carritoTexto = "Productos en el carrito:\n";
-
-        for (let i = 0; i < carrito.length; i++) {
-            carritoTexto += carrito[i].cantidad + " unidades de " + carrito[i].servicio.nombre + " - Precio unitario: $" + carrito[i].servicio.precio + "\n";
-        }
-
-        document.getElementById("resultado").textContent = carritoTexto;
+        totalSpan.textContent = total;
     }
 
-    document.getElementById("verLista").addEventListener("click", verLista);
+    
+    const vaciarCarritoButton = document.getElementById("vaciarCarrito");
+    
+    vaciarCarritoButton.addEventListener("click", () => {
+        vaciarCarrito();
+    });
+
+    function vaciarCarrito() {
+        localStorage.removeItem("carrito");
+        carrito.length = 0; // Vaciar el arreglo del carrito
+        mostrarCarrito(); // Actualizar la vista del carrito
+    }
+
+    mostrarProductos(servicios);
+    mostrarCarrito();
 });
-
-
-
 
 
 //console.log(carrito);
